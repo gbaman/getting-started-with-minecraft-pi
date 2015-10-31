@@ -195,7 +195,7 @@ and change it to
 ```
 And we're done! Jump back into Minecraft and every time you press one of the explorer HAT's buttons, a castle will appear!   
 
-## Challanges
+## Challenges
 - Try changing the block IDs, see if you can build a castle out of other blocks like TNT. What happens if you build it out of sand?   
 - Can you make a bigger castle? Perhaps thicker walls or taller towers?   
 - What about perhaps playing with the Explorer HAT build in LEDs. To use them, use ```eh.light.yellow.on()```. You can try using different colours.
