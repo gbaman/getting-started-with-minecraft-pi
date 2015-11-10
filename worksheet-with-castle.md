@@ -1,8 +1,18 @@
-# Getting Started with Minecraft Pi
+# Hacking Minecraft Pi with Python
 
 Minecraft is a popular sandbox open-world building game. A free version of Minecraft is available for the Raspberry Pi; it also comes with a programming interface. This means you can write commands and scripts in Python code to build things in the game automatically. It's a great way to learn Python!
 
-![Minecraft Pi banner](images/minecraft-pi-banner.png)
+![](cover.png)
+
+In this activity, you will learn to:
+
+- How to access Minecraft Pi and create a new world
+- How to use the Python programming environment IDLE to connect to Minecraft Pi
+- How to use the Minecraft Pi Python API to place blocks to build castles and get the players location
+- How to use the Explorer HAT addon board as an input
+
+<div class="page-break"></div>
+   
 
 ## Run Minecraft
 
@@ -40,11 +50,16 @@ You can also double tap the space bar to fly into the air. You'll stop flying wh
 
 With the sword in your hand, you can click on blocks in front of you to remove them (or to dig). With a block in your hand, you can use right click to place that block in front of you, or left click to remove a block.
 
+<div class="page-break"></div>
+   
 
 ## Building castles with Python and Minecraft
 ![Before](images/before.png)
 ![After](images/after.png)
 Now is time to start building something! We could build a house, but that's a bit boring. What if we build an entire castle every time you place a wool block?
+
+<div class="page-break"></div>
+   
 
 ### Getting started
 
@@ -62,7 +77,8 @@ Because we want to build a castle EVERY time we place a wool block, we need to u
 
 ```python
 def functionName(variable1,variable2):   
-    doSomethingWith(Variable2)```   
+    doSomethingWith(Variable2)
+```   
 
 We can "pass" the function a variable each time we use it. To build the castle we will give our functions the players position so it can always know where they are. Functions are all about splitting code up, so we will start with creating a function to make some space for our castle.   
 **Warning** - Make sure you follow the indentation in the example code, in Python, indentation is very important.   
@@ -71,7 +87,8 @@ We can "pass" the function a variable each time we use it. To build the castle w
 def clear space(x,y,z):
     mc.setBlocks(x+9,y-2,z+5,x-9,y+10,z+30,0)
 ```
-
+<div class="page-break"></div>
+   
 The x,y,z variables are the player's position (`x` and `z` are the walking directions (forward/back and left/right) and `y` is up/down.). The final number (or paramter) in the mc.setblocks is what block we are using, in this case air. Next we need to create another function and write the code to make the towers closest to us.
 ```python
 def towers(x,y,z,block):
@@ -92,13 +109,10 @@ mc.setBlocks(x-6, y-1, z+25, x-8, y+8, z+27, 0)
 Now we have the towers set up, lets give ourselves some protection,and build some walls.
 ```python
 def walls(x,y,z,block):
-  mc.setBlocks(x+4, y-1, z+12, x-4, y+4, z+12, block)
-
-  mc.setBlocks(x+7, y-1, z+15, x+7, y+4, z+23, block)
-
-  mc.setBlocks(x-7, y-1, z+15, x-7, y+4, z+23, block)
-
-  mc.setBlocks(x+4, y-1, z+26, x-4, y+4, z+26, block)
+    mc.setBlocks(x+4, y-1, z+12, x-4, y+4, z+12, block)
+    mc.setBlocks(x+7, y-1, z+15, x+7, y+4, z+23, block)
+    mc.setBlocks(x-7, y-1, z+15, x-7, y+4, z+23, block)
+    mc.setBlocks(x+4, y-1, z+26, x-4, y+4, z+26, block)
 
 ```
 Almost there! now we need to add the most important features of the castle: a floor to stand on and a door so we can actually get into the castle.
@@ -134,6 +148,8 @@ If they are, we call our functions from earlier and change the block we are stan
 ```
 You're done! Save and run the program and change to Minecraft. An an orange wool block and on the floor and then step on it. BOOM! Instant castle.
 What if we could link real life with minecraft? What if we could press a button and have the castle built for us? OR press another button and build another castle made out of LAVA? Let's find out!   
+<div class="page-break"></div>
+   
 
 ## Building castles with the Explorer HAT
 ![Explorer HAT](images/explorer-hat.png)
@@ -149,6 +165,8 @@ and add below it:
 import explorerhat as eh
 pressed=0
 ```
+<div class="page-break"></div>
+   
 This allows us to use the explorer hat's library, and declares a variable for if a button is being pressed. Next go to our while loop, and add before it a new function:
 
 ```python
@@ -185,6 +203,8 @@ This tells our function from earlier if a button has been pressed, and which one
 ```python
   if pressed== 1:
 ```
+<div class="page-break"></div>
+   
 Now our `if` statement checks if a button has been pressed and it has runs our castle building code. The last thing we need to do is set our pressed variable to 0 otherwise the program will continue to build castles forever. Because we don't need to change the block under us any more find
 ```python
     mc.setBlock(x, y-1, z,stone)
@@ -199,3 +219,8 @@ And we're done! Jump back into Minecraft and every time you press one of the exp
 - Try changing the block IDs, see if you can build a castle out of other blocks like TNT. What happens if you build it out of sand?   
 - Can you make a bigger castle? Perhaps thicker walls or taller towers?   
 - What about perhaps playing with the Explorer HAT build in LEDs. To use them, use ```eh.light.yellow.on()```. You can try using different colours.
+
+   
+   
+### Credits
+This resource was created by Joseph Thomas (@jthomascoop), Zach Igielman (@ZacharyIgielman) and Yasmin Bey (@RPi_Yaz14) and is partially based on the Raspberry Pi Foundation resource, "Getting started with Minecraft Pi" https://www.raspberrypi.org/learning/getting-started-with-minecraft-pi/
